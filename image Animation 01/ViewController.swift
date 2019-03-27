@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var alienImageView: UIImageView!
     @IBOutlet weak var myLabel: UILabel!
     var count = 1
+    var direction = true
+    // true = up
+    // false = down
     
     
     override func viewDidLoad() {
@@ -23,13 +26,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func updateButtonPressed(_ sender: Any) {
-        // 누를때마다 카운트 1 증가
-        count += 1
-        if ( count > 5 ) {
-            count = 1
+        if ( count == 5 ) {
+            direction = false
+        } else if ( count == 1 ) {
+            direction = true
+        }
+        
+        if ( direction == true ) {
+            count += 1
+        } else {
+            count -= 1
         }
         alienImageView.image = UIImage(named: "frame\(count).png")
         myLabel.text = "frame\(count).png"
+        
     }
     
     
